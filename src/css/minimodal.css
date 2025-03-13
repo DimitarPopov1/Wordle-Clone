@@ -1,0 +1,13 @@
+.minimodal {
+   position: fixed;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   background-color: rgba(0, 0, 0, 0.7);
+   padding: 20px;
+   color: white;
+   border-radius: 5px;
+   z-index: 9999;
+   width: 200px;
+   text-align: center;
+}
