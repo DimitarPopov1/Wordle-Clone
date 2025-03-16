@@ -63,12 +63,16 @@ const alphabetKeyboard = [
    { key: "n" },
    { key: "m" },
 ];
-const Keyboard = ({ usedKeys }) => {
+const Keyboard = ({ usedKeys, isBg }) => {
    const [letters, setLetters] = useState(null);
 
    useEffect(() => {
-      setLetters(alphabetKeyboard);
-   }, []);
+      if (isBg) {
+         setLetters(alphabetBg); // Use Bulgarian alphabet
+      } else {
+         setLetters(alphabetKeyboard); // Use English alphabet
+      }
+   }, [isBg]);
    return (
       <div className="keyboard">
          {letters &&

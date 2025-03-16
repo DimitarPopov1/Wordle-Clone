@@ -6,7 +6,7 @@ import Modal from "./Modal";
 import MiniModal from "./MiniModal";
 import IncludedModal from "./IncludedModal";
 
-const Wordle = ({ solution }) => {
+const Wordle = ({ solution, words, isBg }) => {
    const {
       currentGuess,
       handleKey,
@@ -16,7 +16,7 @@ const Wordle = ({ solution }) => {
       turn,
       miniModal,
       includedWord,
-   } = useWordle(solution);
+   } = useWordle(solution, words, isBg);
    const [showModal, setShowModal] = useState(false);
 
    useEffect(() => {
@@ -36,7 +36,7 @@ const Wordle = ({ solution }) => {
    return (
       <>
          <Grid currentGuess={currentGuess} guesses={guesses} turn={turn}></Grid>
-         <Keyboard usedKeys={usedKeys}></Keyboard>
+         <Keyboard usedKeys={usedKeys} isBg={isBg}></Keyboard>
          {showModal && (
             <Modal
                isCorrect={isCorrect}

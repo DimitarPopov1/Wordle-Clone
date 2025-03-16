@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import wordData from "../src/data/words.json";
 import wordBg from "./data/wordsBg.json";
 import Wordle from "./components/Wordle";
@@ -12,13 +11,32 @@ function App() {
    useEffect(() => {
       const randomWord = words[Math.floor(Math.random() * words.length)];
       setSolution(randomWord);
-   }, [setSolution]);
+   }, [words]);
+
+   const changeLang = () => {
+      setIsBg((prevIsBg) => !prevIsBg);
+   };
+
+   useEffect(() => {
+      setWords(isBg ? wordBg : wordData);
+   }, [isBg]);
+
+   const preventEnterOnButton = (e) => {
+      if (e.key === "Enter") {
+         e.preventDefault();
+      }
+   };
 
    return (
       <>
+         {console.log(solution)}
          <h1>Wordle</h1>
-
-         {solution && <Wordle solution={solution} words={words}></Wordle>}
+         <button onClick={changeLang} onKeyDown={preventEnterOnButton}>
+            {isBg ? "Change to English" : "Change to Bulgarian"}
+         </button>
+         {solution && (
+            <Wordle solution={solution} words={words} isBg={isBg}></Wordle>
+         )}
       </>
    );
 }

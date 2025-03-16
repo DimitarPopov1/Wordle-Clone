@@ -1,7 +1,5 @@
-import { useState, useEffect } from "react";
-import wordData from "../data/words.json";
-import wordBg from "../data/wordsBg.json";
-const useWordle = (solution, words) => {
+import { useState } from "react";
+const useWordle = (solution, words, isBg) => {
    const [turn, setTurn] = useState(0);
    const [currentGuess, setCurrentGuess] = useState("");
    const [guesses, setGuesses] = useState([...Array(6)]);
@@ -84,19 +82,18 @@ const useWordle = (solution, words) => {
          if (turn > 5) {
             return;
          }
-         if (!wordData.includes(currentGuess)) {
+         if (!words.includes(currentGuess)) {
             setMiniModal(true);
             setTimeout(() => setMiniModal(false), 1000);
             return;
          }
          if (history.includes(currentGuess)) {
             setIncludedWord(true);
-
             setTimeout(() => setIncludedWord(false), 1000);
             return;
          }
 
-         if (currentGuess.length != 5) {
+         if (currentGuess.length !== 5) {
             console.log("must be 5 char ");
             return;
          }
@@ -105,18 +102,17 @@ const useWordle = (solution, words) => {
       }
 
       if (key === "Backspace") {
-         setCurrentGuess((prev) => {
-            return prev.slice(0, -1);
-         });
+         setCurrentGuess((prev) => prev.slice(0, -1));
          return;
       }
-      // /^[\u0410-\u042F\u0430-\u044F]$/.test(key)
-      // /^[A-Za-z]$/.test(key)
-      if (/^[A-Za-z]$/.test(key)) {
+
+      const letterRegex = isBg
+         ? /^[\u0410-\u042F\u0430-\u044F]$/ // Bulgarian alphabet
+         : /^[A-Za-z]$/; // English alphabet
+
+      if (letterRegex.test(key)) {
          if (currentGuess.length < 5) {
-            setCurrentGuess((prev) => {
-               return prev + key;
-            });
+            setCurrentGuess((prev) => prev + key);
          }
       }
    };
