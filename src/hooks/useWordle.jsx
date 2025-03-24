@@ -127,6 +127,7 @@ const useWordle = (solution, words, isBg) => {
       miniModal,
       includedWord,
       turnEnd,
+      setCurrentGuess,
    };
 };
 export default useWordle;

@@ -2,7 +2,7 @@ import React from "react";
 import "../css/row.css";
 
 const Row = ({ guess, currentGuess }) => {
-   if (guess) {
+   if (guess && guess.length) {
       return (
          <div className="row past">
             {guess.map((l, i) => (
@@ -16,6 +16,11 @@ const Row = ({ guess, currentGuess }) => {
 
    if (currentGuess) {
       let letters = currentGuess.split("");
+      const remainingSpaces = 5 - letters.length;
+      if (remainingSpaces < 0) {
+         // Prevent invalid array length
+         letters = letters.slice(0, 5); // Trim it to 5 characters
+      }
       return (
          <div className="row">
             {letters.map((letter, index) => {
@@ -25,7 +30,7 @@ const Row = ({ guess, currentGuess }) => {
                   </div>
                );
             })}
-            {[...Array(5 - letters.length)].map((value, index) => (
+            {[...Array(Math.max(0, remainingSpaces))].map((value, index) => (
                <div key={index}></div>
             ))}
          </div>

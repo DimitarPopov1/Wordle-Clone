@@ -16,6 +16,7 @@ const Wordle = ({ solution, words, isBg }) => {
       turn,
       miniModal,
       includedWord,
+      setCurrentGuess,
    } = useWordle(solution, words, isBg);
    const [showModal, setShowModal] = useState(false);
 
@@ -33,10 +34,21 @@ const Wordle = ({ solution, words, isBg }) => {
       return () => window.removeEventListener("keyup", handleKey);
    }, [handleKey, isCorrect, turn]);
 
+   const handleKeyClick = (key) => {
+      if (currentGuess.length < 5) {
+         setCurrentGuess((prev) => prev + key);
+      }
+   };
+
    return (
       <>
          <Grid currentGuess={currentGuess} guesses={guesses} turn={turn}></Grid>
-         <Keyboard usedKeys={usedKeys} isBg={isBg}></Keyboard>
+         <Keyboard
+            usedKeys={usedKeys}
+            isBg={isBg}
+            onKeyClick={handleKeyClick}
+            onSubmitGuess={handleKey}
+         ></Keyboard>
          {showModal && (
             <Modal
                isCorrect={isCorrect}

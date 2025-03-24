@@ -33,6 +33,7 @@ const alphabetBg = [
    { key: "ю" },
    { key: "я" },
 ];
+
 const alphabetKeyboard = [
    { key: "q" },
    { key: "w" },
@@ -63,8 +64,9 @@ const alphabetKeyboard = [
    { key: "n" },
    { key: "m" },
 ];
-const Keyboard = ({ usedKeys, isBg }) => {
-   const [letters, setLetters] = useState(null);
+
+const Keyboard = ({ usedKeys, isBg, onKeyClick, onSubmitGuess }) => {
+   const [letters, setLetters] = useState([]);
 
    useEffect(() => {
       if (isBg) {
@@ -73,17 +75,42 @@ const Keyboard = ({ usedKeys, isBg }) => {
          setLetters(alphabetKeyboard); // Use English alphabet
       }
    }, [isBg]);
+
+   const handleClick = (key) => {
+      onKeyClick(key);
+   };
+
+   const handleEnterBtn = () => {
+      const event = { key: "Enter" };
+      onSubmitGuess(event);
+   };
+
+   const handleDeleteBtn = () => {
+      const event = { key: "Backspace" };
+      onSubmitGuess(event);
+   };
+
    return (
       <div className="keyboard">
          {letters &&
             letters.map((l) => {
                const color = usedKeys[l.key];
                return (
-                  <div key={l.key} className={color}>
+                  <div
+                     key={l.key}
+                     className={color}
+                     onClick={() => handleClick(l.key)}
+                  >
                      {l.key}
                   </div>
                );
             })}
+         <button className="Enter-btn" onClick={handleEnterBtn}>
+            Enter
+         </button>
+         <button className="Delete-btn" onClick={handleDeleteBtn}>
+            X
+         </button>
       </div>
    );
 };

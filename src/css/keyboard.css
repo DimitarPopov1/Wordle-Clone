@@ -4,6 +4,7 @@
 }
 .keyboard > div {
    margin: 5px;
+   cursor: pointer;
    width: 40px;
    height: 50px;
    background: white;
@@ -25,4 +26,30 @@
 .keyboard > div.yellow {
    background: #c9b458;
    color: white;
+}
+.Enter-btn {
+   margin: 5px;
+   cursor: pointer;
+   width: 60px;
+   height: 50px;
+   background: white;
+   display: inline-block;
+   border-radius: 6px;
+   background-color: #d3d6da;
+   font-weight: bold;
+   text-transform: uppercase;
+   border: none;
+}
+.Delete-btn {
+   margin: 5px;
+   cursor: pointer;
+   width: 60px;
+   height: 50px;
+   background: white;
+   display: inline-block;
+   border-radius: 6px;
+   background-color: #d3d6da;
+   font-weight: bold;
+   text-transform: uppercase;
+   border: none;
 }
