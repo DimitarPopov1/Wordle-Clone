@@ -9,6 +9,7 @@ const useWordle = (solution, words, isBg) => {
    const [miniModal, setMiniModal] = useState(false);
    const [includedWord, setIncludedWord] = useState(false);
    const [turnEnd, setTurnEnd] = useState(false);
+   const [notEnoughLetters, setNotEnoughLetters] = useState(false);
 
    const formatGuess = () => {
       let solutionArray = [...solution];
@@ -82,6 +83,12 @@ const useWordle = (solution, words, isBg) => {
          if (turn > 5) {
             return;
          }
+         if (!words.includes(currentGuess) && currentGuess.length < 5) {
+            setNotEnoughLetters(true);
+            setTimeout(() => setNotEnoughLetters(false), 1000);
+            return;
+         }
+
          if (!words.includes(currentGuess)) {
             setMiniModal(true);
             setTimeout(() => setMiniModal(false), 1000);
@@ -93,10 +100,6 @@ const useWordle = (solution, words, isBg) => {
             return;
          }
 
-         if (currentGuess.length !== 5) {
-            console.log("must be 5 char ");
-            return;
-         }
          const formatted = formatGuess();
          addNewGuess(formatted);
       }
@@ -128,6 +131,7 @@ const useWordle = (solution, words, isBg) => {
       includedWord,
       turnEnd,
       setCurrentGuess,
+      notEnoughLetters,
    };
 };
 export default useWordle;

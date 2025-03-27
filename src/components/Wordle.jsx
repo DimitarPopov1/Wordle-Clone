@@ -5,6 +5,7 @@ import Keyboard from "./Keyboard";
 import Modal from "./Modal";
 import MiniModal from "./MiniModal";
 import IncludedModal from "./IncludedModal";
+import ShortModal from "./ShortModal";
 
 const Wordle = ({ solution, words, isBg }) => {
    const {
@@ -16,6 +17,7 @@ const Wordle = ({ solution, words, isBg }) => {
       turn,
       miniModal,
       includedWord,
+      notEnoughLetters,
       setCurrentGuess,
    } = useWordle(solution, words, isBg);
    const [showModal, setShowModal] = useState(false);
@@ -51,13 +53,15 @@ const Wordle = ({ solution, words, isBg }) => {
          ></Keyboard>
          {showModal && (
             <Modal
+               isBg={isBg}
                isCorrect={isCorrect}
                turn={turn}
                solution={solution}
             ></Modal>
          )}
-         {miniModal && <MiniModal />}
-         {includedWord && <IncludedModal></IncludedModal>}
+         {miniModal && <MiniModal isBg={isBg} />}
+         {includedWord && <IncludedModal isBg={isBg}></IncludedModal>}
+         {notEnoughLetters && <ShortModal isBg={isBg}></ShortModal>}
       </>
    );
 };

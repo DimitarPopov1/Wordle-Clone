@@ -1,11 +1,11 @@
 import React from "react";
 import "../css/minimodal.css";
 
-const MiniModal = () => {
+const MiniModal = ({ isBg }) => {
    return (
       <>
          <div className="minimodal">
-            <h2>Word Not Found!</h2>
+            <h2>{!isBg ? "Word Not Found!" : "Думата не е в речника!"}</h2>
          </div>
       </>
    );
