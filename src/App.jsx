@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import wordData from "../src/data/words.json";
 import wordBg from "./data/wordsBg.json";
 import Wordle from "./components/Wordle";
+import HelpModal from "./components/HelpModal";
 
 function App() {
    const [solution, setSolution] = useState(null);
@@ -13,29 +14,28 @@ function App() {
       setSolution(randomWord);
    }, [words]);
 
-   const changeLang = () => {
-      setIsBg((prevIsBg) => !prevIsBg);
-   };
-
    useEffect(() => {
       setWords(isBg ? wordBg : wordData);
    }, [isBg]);
 
-   const preventEnterOnButton = (e) => {
-      if (e.key === "Enter") {
-         e.preventDefault();
-      }
+   const resetGame = () => {
+      const randomWord = words[Math.floor(Math.random() * words.length)];
+      setSolution(randomWord);
    };
 
    return (
       <>
          {console.log(solution)}
          <h1>Wordle</h1>
-         <button onClick={changeLang} onKeyDown={preventEnterOnButton}>
-            {isBg ? "Change to English" : "Change to Bulgarian"}
-         </button>
+         <HelpModal setIsBg={setIsBg} isBg={isBg}></HelpModal>
          {solution && (
-            <Wordle solution={solution} words={words} isBg={isBg}></Wordle>
+            <Wordle
+               key={solution}
+               solution={solution}
+               words={words}
+               isBg={isBg}
+               resetGame={resetGame}
+            ></Wordle>
          )}
       </>
    );

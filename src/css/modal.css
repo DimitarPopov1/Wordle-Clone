@@ -20,3 +20,6 @@
    text-transform: uppercase;
    letter-spacing: 1px;
 }
+.play-again-btn {
+   cursor: pointer;
+}

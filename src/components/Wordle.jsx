@@ -7,7 +7,7 @@ import MiniModal from "./MiniModal";
 import IncludedModal from "./IncludedModal";
 import ShortModal from "./ShortModal";
 
-const Wordle = ({ solution, words, isBg }) => {
+const Wordle = ({ solution, words, isBg, resetGame }) => {
    const {
       currentGuess,
       handleKey,
@@ -42,6 +42,11 @@ const Wordle = ({ solution, words, isBg }) => {
       }
    };
 
+   const handlePlayAgain = () => {
+      resetGame(); // Reset the game to a new word
+      setShowModal(false); // Close the modal
+   };
+
    return (
       <>
          <Grid currentGuess={currentGuess} guesses={guesses} turn={turn}></Grid>
@@ -57,6 +62,7 @@ const Wordle = ({ solution, words, isBg }) => {
                isCorrect={isCorrect}
                turn={turn}
                solution={solution}
+               resetGame={handlePlayAgain}
             ></Modal>
          )}
          {miniModal && <MiniModal isBg={isBg} />}
