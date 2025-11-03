@@ -43,7 +43,6 @@ function App() {
         </div>
       </SignedOut>
       <SignedIn>
-        {console.log(solution)}
         <UserButton afterSignOutUrl="/" />
         <Leaderboard />
         <h1>Wordle</h1>
