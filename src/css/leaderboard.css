@@ -1,0 +1,74 @@
+.leaderboard-container {
+  position: fixed;
+  left: 40px;
+  top: 20%;
+  background-color: #1f2937;
+  color: #f9fafb;
+  width: 260px;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  font-family: "Inter", sans-serif;
+}
+
+.leaderboard-container h2 {
+  text-align: center;
+  font-size: 1.3rem;
+  margin-bottom: 16px;
+  color: #ffffff;
+  border-bottom: 1px solid #374151;
+  padding-bottom: 8px;
+}
+
+.leaderboard-container ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.leaderboard-container li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #374151;
+  transition: background 0.2s ease;
+  cursor: pointer;
+}
+.leaderboard-container li.current-user {
+  background-color: rgba(74, 222, 128, 0.2);
+  font-weight: bold;
+  border-radius: 6px;
+  padding: 2px 4px;
+}
+.leaderboard-container li.separator {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  margin: 4px 0;
+}
+
+.leaderboard-container li:hover {
+  background-color: #2d3748;
+}
+
+.rank {
+  font-weight: bold;
+  color: #fbbf24;
+  width: 2em;
+}
+
+.email {
+  flex: 1;
+  text-align: left;
+  color: #f3f4f6;
+}
+
+.score {
+  color: #9ca3af;
+  font-size: 0.9rem;
+}
+
+.no-players {
+  text-align: center;
+  color: #9ca3af;
+  font-size: 0.9rem;
+}

@@ -1,0 +1,71 @@
+.user-stats {
+  color: #9ca3af;
+  margin-top: 1rem;
+}
+.stats-container {
+  position: fixed;
+  right: 40px;
+  top: 20%;
+  background-color: #1f2937; /* Dark gray background */
+  color: #f9fafb; /* Light text */
+  width: 260px;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  font-family: "Inter", sans-serif;
+}
+
+.stats-container h2 {
+  text-align: center;
+  font-size: 1.3rem;
+  margin-bottom: 16px;
+  color: #ffffff;
+  border-bottom: 1px solid #374151;
+  padding-bottom: 8px;
+}
+
+.stats-container ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.stats-container li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #374151;
+  transition: background 0.2s ease;
+  cursor: pointer;
+}
+
+.stats-container li:hover {
+  background-color: #2d3748;
+}
+
+.stats-container .word {
+  font-weight: 500;
+  color: #f9fafb;
+  text-transform: capitalize;
+}
+
+.stats-container .time {
+  font-size: 0.8rem;
+  color: #9ca3af;
+  margin-left: 6px;
+  flex: 1;
+  text-align: center;
+}
+
+.stats-container .result {
+  font-weight: bold;
+}
+
+.stats-container .result.won {
+  color: #4ade80; /* green-400 */
+}
+
+.stats-container .result.lost {
+  color: #f87171; /* red-400 */
+}
