@@ -44,18 +44,24 @@ function App() {
       </SignedOut>
       <SignedIn>
         <UserButton afterSignOutUrl="/" />
-        <Leaderboard />
+
+        {/* Top stats container: Leaderboard + Recent Games */}
+        <div className="top-stats">
+          <Leaderboard />
+          <UserStats />
+        </div>
+
         <h1>Wordle</h1>
-        <HelpModal setIsBg={setIsBg} isBg={isBg}></HelpModal>
+        <HelpModal setIsBg={setIsBg} isBg={isBg} />
         {solution && (
           <Wordle
             key={solution}
             solution={solution}
             words={words}
             isBg={isBg}
-            resetGame={resetGame}></Wordle>
+            resetGame={resetGame}
+          />
         )}
-        <UserStats />
       </SignedIn>
     </>
   );

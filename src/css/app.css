@@ -17,3 +17,42 @@
   transition: background-color 0.3s;
   cursor: pointer;
 }
+@media (max-width: 1024px) {
+  .leaderboard-container,
+  .stats-container {
+    position: static; /* remove fixed positioning */
+    width: 48%; /* two boxes side by side */
+    margin: 0 1%; /* add horizontal margin */
+    padding: 12px; /* slightly smaller padding */
+    font-size: 10px;
+  }
+
+  .top-stats {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap; /* keep in one row */
+    gap: 1rem; /* gap between the two boxes */
+    margin-bottom: 1rem;
+  }
+
+  /* List item adjustments */
+  .leaderboard-container li,
+  .stats-container li {
+    padding: 6px 4px;
+  }
+
+  /* Shrink text slightly for ranks, scores, and times */
+  .rank,
+  .score,
+  .time {
+    font-size: 0.85rem;
+  }
+
+  /* Constrain points container in leaderboard */
+  .leaderboard-container .score {
+    max-width: 60px; /* prevents text overflow */
+    text-overflow: ellipsis; /* add ellipsis if points are too large */
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}

@@ -1,39 +1,15 @@
-/* --- UserStats Container --- */
 .stats-container {
   position: fixed;
   right: 40px;
   top: 20%;
-  background-color: #1f2937; /* Dark gray background */
-  color: #f9fafb; /* Light text */
   width: 260px;
+  background-color: #1f2937;
+  color: #f9fafb;
   border-radius: 16px;
   padding: 20px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   font-family: "Inter", sans-serif;
-  transition: all 0.3s ease;
-  z-index: 10;
-}
-
-/* Responsive for tablets and smaller screens */
-@media screen and (max-width: 1024px) {
-  .stats-container {
-    position: absolute;
-    top: auto;
-    bottom: 20px;
-    right: 50%;
-    transform: translateX(50%);
-    width: 90%;
-    max-width: 300px;
-  }
-}
-
-/* Responsive for mobile */
-@media screen and (max-width: 640px) {
-  .stats-container {
-    width: 95%;
-    padding: 15px;
-    font-size: 0.9rem;
-  }
+  margin-bottom: 1rem;
 }
 
 .stats-container h2 {
@@ -84,9 +60,22 @@
 }
 
 .stats-container .result.won {
-  color: #4ade80; /* green-400 */
+  color: #4ade80;
 }
 
 .stats-container .result.lost {
-  color: #f87171; /* red-400 */
+  color: #f87171;
+}
+
+.user-stats {
+  color: #9ca3af;
+  margin-top: 1rem;
+}
+
+/* Mobile screens */
+@media (max-width: 640px) {
+  .stats-container {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
 }
