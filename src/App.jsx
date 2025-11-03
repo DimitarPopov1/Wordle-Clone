@@ -31,6 +31,10 @@ function App() {
     const randomWord = words[Math.floor(Math.random() * words.length)];
     setSolution(randomWord);
   };
+  console.log(
+    "Clerk publishable key:",
+    import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
+  );
 
   return (
     <>
