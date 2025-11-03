@@ -1,9 +1,8 @@
 name: Deploy to Firebase Hosting on merge
-
 on:
   push:
     branches:
-      - main # or 'master', whichever is your default branch
+      - main # or master if that’s your live branch
 
 jobs:
   build_and_deploy:
@@ -11,19 +10,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Set Node version >=20
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "18"
+          node-version: "20"
 
-      - name: Install dependencies
-        run: npm ci
+      - run: npm ci
+      - run: npm run build
 
-      - name: Build
-        run: npm run build
-
-      - name: Deploy to Firebase Hosting
-        uses: FirebaseExtended/action-hosting-deploy@v0
+      - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_WORDLE_CLONE_4CD58 }}
