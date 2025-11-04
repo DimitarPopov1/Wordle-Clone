@@ -39,7 +39,7 @@ export default function Leaderboard() {
       setCurrentUserRank(userRank);
 
       // Keep only top 10 for display
-      setLeaders(sorted.slice(0, 10));
+      setLeaders(sorted.slice(0, 5));
     });
 
     return () => unsubscribe();

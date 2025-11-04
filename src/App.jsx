@@ -46,26 +46,45 @@ function App() {
           </SignInButton>
         </div>
       </SignedOut>
+
       <SignedIn>
-        <UserButton afterSignOutUrl="/" />
+        {/* Full-width Header */}
+        <header className="app-header">
+          <div className="header-content">
+            <h1 className="app-title">Wordle</h1>
+            <div className="header-right">
+              <HelpModal setIsBg={setIsBg} isBg={isBg} />
+              <UserButton
+                afterSignOutUrl="/"
+                appearance={{
+                  elements: {
+                    userButtonAvatarBox: {
+                      width: "50px",
+                      height: "50px",
+                    },
+                  },
+                }}
+              />
+            </div>
+          </div>
+        </header>
 
-        {/* Top stats container: Leaderboard + Recent Games */}
-        <div className="top-stats">
-          <Leaderboard />
-          <UserStats />
-        </div>
+        <main className="app-main">
+          <div className="top-stats">
+            <Leaderboard />
+            <UserStats />
+          </div>
 
-        <h1>Wordle</h1>
-        <HelpModal setIsBg={setIsBg} isBg={isBg} />
-        {solution && (
-          <Wordle
-            key={solution}
-            solution={solution}
-            words={words}
-            isBg={isBg}
-            resetGame={resetGame}
-          />
-        )}
+          {solution && (
+            <Wordle
+              key={solution}
+              solution={solution}
+              words={words}
+              isBg={isBg}
+              resetGame={resetGame}
+            />
+          )}
+        </main>
       </SignedIn>
     </>
   );

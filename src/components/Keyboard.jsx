@@ -1,118 +1,51 @@
 import React, { useEffect, useState } from "react";
 import "../css/keyboard.css";
 
-const alphabetBg = [
-   { key: "а" },
-   { key: "б" },
-   { key: "в" },
-   { key: "г" },
-   { key: "д" },
-   { key: "е" },
-   { key: "ж" },
-   { key: "з" },
-   { key: "и" },
-   { key: "й" },
-   { key: "к" },
-   { key: "л" },
-   { key: "м" },
-   { key: "н" },
-   { key: "о" },
-   { key: "п" },
-   { key: "р" },
-   { key: "с" },
-   { key: "т" },
-   { key: "у" },
-   { key: "ф" },
-   { key: "х" },
-   { key: "ц" },
-   { key: "ч" },
-   { key: "ш" },
-   { key: "щ" },
-   { key: "ъ" },
-   { key: "ь" },
-   { key: "ю" },
-   { key: "я" },
+const bulgarianRows = [
+  ["я", "в", "е", "р", "т", "ъ", "у", "и", "о", "п", "ш", "щ"],
+  ["а", "с", "д", "ф", "г", "х", "й", "к", "л", "ю"],
+  ["Enter", "ч", "з", "ь", "ц", "ж", "б", "н", "м", "Backspace"],
 ];
 
-const alphabetKeyboard = [
-   { key: "q" },
-   { key: "w" },
-   { key: "e" },
-   { key: "r" },
-   { key: "t" },
-   { key: "y" },
-   { key: "u" },
-   { key: "i" },
-   { key: "o" },
-   { key: "p" },
-
-   { key: "a" },
-   { key: "s" },
-   { key: "d" },
-   { key: "f" },
-   { key: "g" },
-   { key: "h" },
-   { key: "j" },
-   { key: "k" },
-   { key: "l" },
-
-   { key: "z" },
-   { key: "x" },
-   { key: "c" },
-   { key: "v" },
-   { key: "b" },
-   { key: "n" },
-   { key: "m" },
+const englishRows = [
+  ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
+  ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
+  ["Enter", "z", "x", "c", "v", "b", "n", "m", "Backspace"],
 ];
 
 const Keyboard = ({ usedKeys, isBg, onKeyClick, onSubmitGuess }) => {
-   const [letters, setLetters] = useState([]);
+  const [letters, setLetters] = useState([]);
 
-   useEffect(() => {
-      if (isBg) {
-         setLetters(alphabetBg); // Use Bulgarian alphabet
-      } else {
-         setLetters(alphabetKeyboard); // Use English alphabet
-      }
-   }, [isBg]);
+  useEffect(() => {
+    setLetters(isBg ? bulgarianRows : englishRows);
+  }, [isBg]);
 
-   const handleClick = (key) => {
-      onKeyClick(key);
-   };
+  const handleClick = (key) => {
+    if (key === "Enter") onSubmitGuess({ key: "Enter" });
+    else if (key === "Backspace") onSubmitGuess({ key: "Backspace" });
+    else onKeyClick(key);
+  };
 
-   const handleEnterBtn = () => {
-      const event = { key: "Enter" };
-      onSubmitGuess(event);
-   };
-
-   const handleDeleteBtn = () => {
-      const event = { key: "Backspace" };
-      onSubmitGuess(event);
-   };
-
-   return (
-      <div className="keyboard">
-         {letters &&
-            letters.map((l) => {
-               const color = usedKeys[l.key];
-               return (
-                  <div
-                     key={l.key}
-                     className={color}
-                     onClick={() => handleClick(l.key)}
-                  >
-                     {l.key}
-                  </div>
-               );
-            })}
-         <button className="Enter-btn" onClick={handleEnterBtn}>
-            Enter
-         </button>
-         <button className="Delete-btn" onClick={handleDeleteBtn}>
-            X
-         </button>
-      </div>
-   );
+  return (
+    <div className="keyboard">
+      {letters.map((row, rowIndex) => (
+        <div key={rowIndex} className="keyboard-row">
+          {row.map((key) => {
+            const color = usedKeys[key];
+            const isLarge = key === "Enter" || key === "Backspace";
+            return (
+              <div
+                key={key}
+                className={`key ${isLarge ? "large-key" : ""} ${color || ""}`}
+                onClick={() => handleClick(key)}>
+                {key === "Backspace" ? "⌫" : key}
+              </div>
+            );
+          })}
+        </div>
+      ))}
+    </div>
+  );
 };
 
 export default Keyboard;

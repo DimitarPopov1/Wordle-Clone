@@ -77,9 +77,20 @@
 }
 
 /* Mobile screens */
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .leaderboard-container {
-    width: 100%;
-    margin-bottom: 1rem;
+    position: static; /* remove fixed positioning */
+    width: 90%;
+    margin: 1rem auto;
+    padding: 15px;
+    font-size: 0.9rem;
+  }
+
+  .leaderboard-container h2 {
+    font-size: 1.1rem;
+  }
+
+  .leaderboard-container li {
+    padding: 6px 0;
   }
 }

@@ -1,55 +1,99 @@
 .keyboard {
-   max-width: 500px;
-   margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  user-select: none;
 }
-.keyboard > div {
-   margin: 5px;
-   cursor: pointer;
-   width: 40px;
-   height: 50px;
-   background: white;
-   display: inline-block;
-   border-radius: 6px;
-   line-height: 50px;
-   background-color: #d3d6da;
-   font-weight: bold;
-   text-transform: uppercase;
+
+.keyboard-row {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
 }
-.keyboard > div.green {
-   background: #6aaa64;
-   color: white;
+
+/* Base key style */
+.key {
+  background-color: #d3d6da;
+  color: #000;
+  font-weight: 600;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 6px;
+  height: 58px;
+  min-width: 43px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.15s ease;
 }
-.keyboard > div.grey {
-   background: #787c7e;
-   color: white;
+
+.key:hover {
+  background-color: #c4c7ca;
 }
-.keyboard > div.yellow {
-   background: #c9b458;
-   color: white;
+
+/* Enter and Delete (⌫) */
+.large-key {
+  min-width: 70px;
+  font-size: 0.9rem;
 }
-.Enter-btn {
-   margin: 5px;
-   cursor: pointer;
-   width: 60px;
-   height: 50px;
-   background: white;
-   display: inline-block;
-   border-radius: 6px;
-   background-color: #d3d6da;
-   font-weight: bold;
-   text-transform: uppercase;
-   border: none;
+
+/* Wordle-like colors */
+.key.correct {
+  background-color: #6aaa64;
+  color: white;
 }
-.Delete-btn {
-   margin: 5px;
-   cursor: pointer;
-   width: 60px;
-   height: 50px;
-   background: white;
-   display: inline-block;
-   border-radius: 6px;
-   background-color: #d3d6da;
-   font-weight: bold;
-   text-transform: uppercase;
-   border: none;
+
+.key.present {
+  background-color: #c9b458;
+  color: white;
+}
+
+.key.absent {
+  background-color: #787c7e;
+  color: white;
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+  .keyboard {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    margin: 0 auto;
+    padding: 0 4px;
+    box-sizing: border-box;
+  }
+
+  .keyboard-row {
+    display: flex;
+    justify-content: center;
+    gap: 3px;
+    width: 100%;
+  }
+
+  .key {
+    flex: 1;
+    max-width: clamp(28px, 8vw, 36px); /* scales with screen width */
+    height: clamp(38px, 6vh, 45px);
+    font-size: clamp(0.7rem, 2.5vw, 0.9rem);
+    border-radius: 5px;
+    min-width: unset; /* override desktop value */
+  }
+
+  .large-key {
+    flex: 1.5;
+    max-width: clamp(50px, 10vw, 65px);
+    font-size: clamp(0.65rem, 2.5vw, 0.8rem);
+  }
+
+  /* Fix parent margin overlap */
+  .keyboard > div {
+    margin: 0;
+  }
 }
