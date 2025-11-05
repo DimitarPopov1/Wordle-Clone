@@ -73,6 +73,7 @@
   .modal > div {
     max-width: 90vw;
     padding: 1.5rem 1rem;
+    position: relative;
   }
 
   .modal h1 {
@@ -88,6 +89,21 @@
     width: 100%;
     padding: 0.75rem;
     font-size: 0.95rem;
+  }
+  .modal .close-btn {
+    position: absolute;
+    top: 5px;
+    right: -147px;
+    width: 28px;
+    height: 28px;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    left: 185px;
   }
 }
 

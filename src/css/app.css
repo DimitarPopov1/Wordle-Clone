@@ -117,6 +117,7 @@ body {
 
   .app-title {
     font-size: 1.6rem;
+    display: contents;
   }
 
   .sign-in-button {
@@ -125,7 +126,26 @@ body {
   }
 
   .top-stats {
-    gap: 1.5rem;
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    background: #111827; /* optional subtle background */
+    padding: 10px 0;
+    z-index: 999;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 5px;
+  }
+
+  .leaderboard-container,
+  .stats-container {
+    position: static;
+    width: 45%; /* two boxes side by side */
+    padding: 10px;
+    font-size: 20px;
+    margin: 0px 10px 0px 10px;
   }
 }
 
