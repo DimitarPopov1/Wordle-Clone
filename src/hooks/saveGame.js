@@ -30,8 +30,6 @@ export async function saveGameResult(user, gameData) {
       points,
       createdAt: serverTimestamp(),
     });
-
-    console.log("✅ Game result saved to Firestore!");
   } catch (error) {
     console.error("❌ Error saving game:", error);
   }

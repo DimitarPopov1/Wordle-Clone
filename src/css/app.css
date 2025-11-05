@@ -103,6 +103,9 @@ body {
   background-color: #e0e7ff;
   transform: scale(1.05);
 }
+.modal .close-btn {
+  border-radius: 50%;
+}
 
 /* ================================
    RESPONSIVE DESIGN
@@ -113,6 +116,9 @@ body {
   .app-header {
     padding: 0.75rem 1.5rem;
     width: auto;
+  }
+  .modal .close-btn {
+    border-radius: 50%;
   }
 
   .app-title {
@@ -234,6 +240,9 @@ body {
   .stats-container .time {
     font-size: 10px;
   }
+  .modal .close-btn {
+    border-radius: 50%;
+  }
 
   /* 🔹 Extra small screens (<480px) */
   @media (max-width: 480px) {
@@ -252,6 +261,9 @@ body {
 
     .header-right {
       gap: 0.4rem;
+    }
+    .modal .close-btn {
+      border-radius: 50%;
     }
   }
 }
