@@ -26,7 +26,6 @@ const Wordle = ({ solution, words, isBg, resetGame }) => {
   const [showModal, setShowModal] = useState(false);
   const { user } = useUser();
   const didSave = useRef(false);
-
   useEffect(() => {
     window.addEventListener("keyup", handleKey);
 
