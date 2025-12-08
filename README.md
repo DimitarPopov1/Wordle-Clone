@@ -1,12 +1,25 @@
-# React + Vite
+# Wordle Clone
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple Wordle clone built with **React**, featuring user authentication with  **Clerk** and **Firebase** storage.  
+This project was created to practice React components, game logic, authentication, and saving user data in the cloud.
 
-Currently, two official plugins are available:
+ **Live Demo:** https://wordle-clone-4cd58.web.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+ ## Features
 
-## Expanding the ESLint configuration
+- Built with **React**
+- Authentication using **Clerk** (sign in / sign up)
+- Saves user data and game progress using **Firebase**
+- Local word list (no external API needed)
+- Clean and simple UI
+- Responsive on desktop and mobile
+- Accurate Wordle-like guess validation
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Branches
+
+- **main** – Improved version with cleaner code, better structure, and updated UI  
+- **master** – Older version kept for reference and to show project progression
+
+The deployed version uses the **main** branch.
+
+
