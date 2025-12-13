@@ -22,6 +22,10 @@ body {
   top: 0;
   z-index: 1000;
 }
+.app-logo {
+  width: 150px;
+  height: auto;
+}
 
 .header-content {
   position: relative;
@@ -120,7 +124,10 @@ body {
   .modal .close-btn {
     border-radius: 50%;
   }
-
+  .app-logo {
+    width: 100px;
+    height: auto;
+  }
   .app-title {
     font-size: 1.6rem;
     display: contents;
@@ -184,7 +191,7 @@ body {
     font-size: 10px;
   }
   .LanguageBtn {
-    font-size: 10px;
+    font-size: 7px;
     padding: 10px;
     font-weight: 100;
   }
@@ -267,6 +274,10 @@ body {
     }
     .modal .close-btn {
       border-radius: 50%;
+    }
+    .cl-internal-1df54sh {
+      width: 40px;
+      height: 40px;
     }
   }
 }

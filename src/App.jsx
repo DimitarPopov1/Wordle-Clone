@@ -5,7 +5,9 @@ import Wordle from "./components/Wordle";
 import HelpModal from "./components/HelpModal";
 import UserStats from "./components/UserStats";
 import Leaderboard from "./components/Leaderboard";
+import logo from "../src/assets/wordle-logo.svg";
 import "./css/app.css";
+
 import {
   SignedIn,
   SignedOut,
@@ -47,7 +49,9 @@ function App() {
         {/* Full-width Header */}
         <header className="app-header">
           <div className="header-content">
-            <h1 className="app-title">Wordle</h1>
+            <h1 className="app-title">
+              {<img src={logo} alt="Wordle Logo" className="app-logo" />}
+            </h1>
             <div className="header-right">
               <HelpModal setIsBg={setIsBg} isBg={isBg} />
               <UserButton
