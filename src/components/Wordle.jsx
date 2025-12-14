@@ -26,18 +26,42 @@ const Wordle = ({ solution, words, isBg, resetGame }) => {
   const [showModal, setShowModal] = useState(false);
   const { user } = useUser();
   const didSave = useRef(false);
+  // useEffect(() => {
+  //   window.addEventListener("keyup", handleKey);
+
+  //   if ((isCorrect || turn > 5) && !didSave.current) {
+  //     didSave.current = true; // prevent double-save
+  //     setTimeout(() => setShowModal(true), 1000);
+  //     window.removeEventListener("keyup", handleKey);
+
+  //     saveGameResult(user, { solution, isCorrect, turn });
+  //   }
+
+  //   return () => window.removeEventListener("keyup", handleKey);
+  // }, [handleKey, isCorrect, turn]);
   useEffect(() => {
-    window.addEventListener("keyup", handleKey);
+    const isMobile = window.innerWidth <= 768;
+
+    if (!isMobile) {
+      window.addEventListener("keyup", handleKey);
+    }
 
     if ((isCorrect || turn > 5) && !didSave.current) {
-      didSave.current = true; // prevent double-save
+      didSave.current = true;
       setTimeout(() => setShowModal(true), 1000);
-      window.removeEventListener("keyup", handleKey);
+
+      if (!isMobile) {
+        window.removeEventListener("keyup", handleKey);
+      }
 
       saveGameResult(user, { solution, isCorrect, turn });
     }
 
-    return () => window.removeEventListener("keyup", handleKey);
+    return () => {
+      if (!isMobile) {
+        window.removeEventListener("keyup", handleKey);
+      }
+    };
   }, [handleKey, isCorrect, turn]);
 
   const handleKeyClick = (key) => {
@@ -50,9 +74,52 @@ const Wordle = ({ solution, words, isBg, resetGame }) => {
     resetGame(); // Reset the game to a new word
     setShowModal(false); // Close the modal
   };
+  useEffect(() => {
+    if (window.innerWidth > 768) return;
+
+    const input = document.getElementById("mobile-input");
+    let lastValue = "";
+
+    const handleMobileInput = (e) => {
+      const value = e.target.value;
+
+      // BACKSPACE
+      if (value.length < lastValue.length) {
+        handleKey({ key: "Backspace" });
+      }
+      // NEW LETTER
+      else if (value.length > lastValue.length) {
+        const letter = value.slice(-1);
+        handleKey({ key: letter });
+      }
+
+      lastValue = value;
+    };
+
+    input.focus();
+    input.addEventListener("input", handleMobileInput);
+
+    return () => {
+      input.removeEventListener("input", handleMobileInput);
+    };
+  }, [handleKey]);
 
   return (
     <>
+      <input
+        id="mobile-input"
+        type="text"
+        inputMode="text"
+        autoComplete="off"
+        autoCorrect="off"
+        spellCheck="false"
+        style={{
+          position: "absolute",
+          opacity: 0,
+          height: 0,
+          width: 0,
+        }}
+      />
       <Grid currentGuess={currentGuess} guesses={guesses} turn={turn}></Grid>
       <Keyboard
         usedKeys={usedKeys}

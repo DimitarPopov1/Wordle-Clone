@@ -60,14 +60,16 @@
 /* Responsive layout */
 @media (max-width: 768px) {
   .keyboard {
-    width: 100%;
+    display: none;
+
+    /* width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 4px;
     margin: 0 auto;
     padding: 0 4px;
-    box-sizing: border-box;
+    box-sizing: border-box; */
   }
 
   .keyboard-row {
